@@ -22,11 +22,11 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-st.sidebar.title("🔬 Breast Cancer KNN App")
+st.sidebar.title("Breast Cancer KNN App")
 mode = st.sidebar.radio("Choose Mode:", ["Model Evaluation", "Patient Prediction"])
 
 if mode == "Model Evaluation":
-    st.title("📊 Model Evaluation")
+    st.title("Model Evaluation")
 
     k = st.sidebar.slider("Select number of neighbors (k)", 1, 20, 5)
 
@@ -44,7 +44,7 @@ if mode == "Model Evaluation":
     st.text(classification_report(y_test, y_pred, target_names=["Benign", "Malignant"]))
 
 elif mode == "Patient Prediction":
-    st.title("🔮 Patient Prediction")
+    st.title("Patient Prediction")
 
     st.write("**Manually enter patient measurements**")
 
@@ -57,17 +57,17 @@ elif mode == "Patient Prediction":
     inputs = {}
 
     with tabs[0]:
-        st.write("👉 Enter **Mean Features**")
+        st.write("Enter **Mean Features**")
         for col in [c for c in X.columns if "mean" in c]:
             inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
 
     with tabs[1]:
-        st.write("👉 Enter **Standard Error Features**")
+        st.write("Enter **Standard Error Features**")
         for col in [c for c in X.columns if "se" in c]:
             inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
 
     with tabs[2]:
-        st.write("👉 Enter **Worst Features**")
+        st.write("Enter **Worst Features**")
         for col in [c for c in X.columns if "worst" in c]:
             inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
 
