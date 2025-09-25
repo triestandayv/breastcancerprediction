@@ -52,7 +52,7 @@ elif mode == "Patient Prediction":
     knn.fit(X_train_scaled, y_train)
 
     st.subheader("Manual Input")
-     tabs = st.tabs(["Mean Values", "Standard Error", "Worst Values"])
+    tabs = st.tabs(["Mean Values", "Standard Error", "Worst Values"])
 
     inputs = {}
 
