@@ -52,9 +52,24 @@ elif mode == "Patient Prediction":
     knn.fit(X_train_scaled, y_train)
 
     st.subheader("Manual Input")
+     tabs = st.tabs(["Mean Values", "Standard Error", "Worst Values"])
+
     inputs = {}
-    for col in X.columns[:10]:
-        inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
+
+    with tabs[0]:
+        st.write("👉 Enter **Mean Features**")
+        for col in [c for c in X.columns if "mean" in c]:
+            inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
+
+    with tabs[1]:
+        st.write("👉 Enter **Standard Error Features**")
+        for col in [c for c in X.columns if "se" in c]:
+            inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
+
+    with tabs[2]:
+        st.write("👉 Enter **Worst Features**")
+        for col in [c for c in X.columns if "worst" in c]:
+            inputs[col] = st.number_input(f"{col}", min_value=0.0, format="%.4f")
 
     if st.button("Predict (Manual Input)"):
         new_data = pd.DataFrame([inputs])
